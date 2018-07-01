@@ -43,7 +43,7 @@ while(1):
         # print(type(sensor1))
 
         # Read pixels, convert them to values between 0 and 1, map them to an 8x8 grid
-        pixels = sensor1.readPixels()
+        pixels = Z
         pixmax = max(pixels)
         pixels = [x / pixmax for x in pixels]
         points = [(math.floor(ix / 8), (ix % 8)) for ix in range(0, 64)]
@@ -54,10 +54,10 @@ while(1):
         image = np.array(bicubic)
         image = np.reshape(image, (32, 32))
         print(image)
-        plt.imsave('color_img.jpg', image)
+        plt.imsave('color_img.png', image)
 
         # Read image
-        img = cv2.imread("color_img.jpg", cv2.IMREAD_GRAYSCALE)
+        img = cv2.imread("color_img.png", cv2.IMREAD_GRAYSCALE)
         img = cv2.bitwise_not(img)
 
         # Setup SimpleBlobDetector parameters.
@@ -95,18 +95,18 @@ while(1):
             print(x, y)
 
         # Get the channel setting for interval_ms
-        interval = config.get("channel.interval_ms")
-        interval = config.get("channel.active")
+        # interval = config.get("channel.interval_ms")
+        # interval = config.get("channel.active")
         # Report the device having set interval_ms
-        config.set("channel.interval_ms", interval)
-        config.set("channel.active", active)
-        channel.send(str(len(keypoints)))
-        time.sleep(interval)
+        # config.set("channel.interval_ms", interval)
+        # config.set("channel.active", active)
+        # channel.send(str(len(keypoints)))
+        # time.sleep(interval)
         # time.sleep(5)
 
     else:
         print("idle")
-        channel.send("Idle")
-        time.sleep(5)
-        interval = config.get("channel.active")
-        config.set("channel.active", active)
+        # channel.send("Idle")
+        # time.sleep(5)
+        # interval = config.get("channel.active")
+        # config.set("channel.active", active)
