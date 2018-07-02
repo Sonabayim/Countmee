@@ -9,19 +9,17 @@ import urllib.request
 from array import array
 # import xmltodict
 
-# sensor = Adafruit_AMG88xx()
-
-active = True
 
 while(1):
-	if active == True:
+	# if active == True:
 	   
-		file = urllib.request.urlopen('http://192.168.5.149/xml')
+		file = urllib.request.urlopen('http://192.168.5.124/xml')
 		data = file.read()
 		file.close()
 
 		data = xmltodict.parse(data)
-		
+		#time.sleep(5)
+
 		length = len(data['response'])
 		# print(data['response'])
 		sensor = data['response']
@@ -88,11 +86,11 @@ while(1):
 		for i in range (0, len(keypoints)):
 			x = keypoints[i].pt[0]
 			y = keypoints[i].pt[1]
-			print("People :" + str(len(keypoints)))
+			print(str(len(keypoints)))
 	
 		
-	else:
-		print("idle")
+	# else:
+	# 	print("idle")
 		# channel.send("Idle")
 		# time.sleep(5)
 		# interval = config.get("channel.active")
